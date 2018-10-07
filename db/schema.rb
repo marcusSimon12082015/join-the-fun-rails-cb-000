@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181007152546) do
+ActiveRecord::Schema.define(version: 20181007152657) do
 
   create_table "passengers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "rides", force: :cascade do |t|
+    t.integer "taxi_id"
+    t.integer "passenger_id"
+  end
+
+  add_index "rides", ["passenger_id"], name: "index_rides_on_passenger_id"
+  add_index "rides", ["taxi_id"], name: "index_rides_on_taxi_id"
 
   create_table "taxis", force: :cascade do |t|
     t.datetime "created_at", null: false
